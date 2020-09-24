@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "OtelEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using OtelArama.Models
+
+
+<br /><br /><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2"style="text-align:center">
+                   Otel Ekle
+                </div>
+                <div class="block-controls">
+                    <a href="/Oteller/Index"></a>
+                    <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Oteller/OtelEkle" method="post" role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Otel Adı</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Otel Adını Giriniz" name="otel_adi">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Otel Adresi</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Otel Adresini Giriniz" name="otel_adres">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Otel Telefonu</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Otel Telefonu Giriniz" name="otel_tel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Otel Yönetimini Seçiniz</label>
+                            <select class="form-control" name="yonetim_id">
+                                @foreach (OtelYonetimi item in ViewBag.otelyonetimi)
+                                {
+                                    <option value="@item.yonetim_id">@item.yonetim_adi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Resim Ekle</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="resim url si giriniz" name="image">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Otel Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

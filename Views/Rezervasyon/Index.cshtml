@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Rezervasyon Yap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using OtelArama.Models
+@model Odalar
+
+
+
+<br /><br /><br />
+<div class="row">
+    <a href="~/Odalar/Index/@Model.otel_id" class="btn btn-warning"><i class="fa fa-angle-left"></i> Odalara Geri Dön</a>
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2" style="text-align:center">
+                    Rezervasyon Yap
+                </div>
+                <div class="block-controls">
+
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Rezervasyon/RezervasyonEkle" method="post" role="form">
+
+
+                        <input class="form-control" name="otel_id" type="hidden" value="@Model.otel_id" />
+                        <input class="form-control" name="oda_id" type="hidden" value="@Model.oda_id" />
+                        <div class="container">
+                            <div class="col-sm-2 hidden-xs"><img src="@Model.image" alt="..." class="img-responsive" style="padding-left:8rem" /></div>
+                            <div>
+
+                                <h4 class="nomargin" style="text-align:center">-@Model.Oteller.otel_adi-</h4>
+                                <p style="font-weight:bold;text-align:center">@Model.oda_numara numaralı oda</p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group ">
+                            <label for="exampleInputPassword1">Giriş Tarihi Seçin:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar">
+                                    </i>
+                                </div>
+                                <input class="form-control" name="giristarihi" placeholder="DD/MM/YYYY" type="datetime" />
+
+
+                            </div>
+
+                        </div>
+                        <div class="form-group ">
+                            <label for="exampleInputPassword1">Çıkış Tarihi Seçin:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar">
+                                    </i>
+                                </div>
+                                <input class="form-control" id="date" name="cikistarihi" placeholder="DD/MM/YYYY" type="datetime" />
+                            </div>
+
+                        </div>
+                                <button type="submit" class="btn btn-primary">Rezervasyon Yap</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+<!-- Include jQuery -->
+<script src="~/Content/jquery-1.11.1.min.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="cikistarihi"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+    $(document).ready(function () {
+        var date_input = $('input[name="giristarihi"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>

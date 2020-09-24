@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "OdaEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using OtelArama.Models
+
+
+<br /><br /><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2" style="text-align:center">
+                    Oda Ekle
+                </div>
+                <div class="block-controls">
+                   
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <form action="/Odalar/OdaEkle" method="post" role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Oda Kat</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Oda Katını Giriniz" name="oda_kat">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Oda Numarası</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Oda Numarasını Giriniz" name="oda_numara">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Oda Durumu</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="bos veya dolu olarak giriniz" name="odadurumu">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Oda Tipi Seçiniz</label>
+                            <select class="form-control" name="odatip_id">
+
+                                @{
+                                    OtelAramaModel ot = new OtelAramaModel();
+                                    List<OdaTipi> odalart = ot.OdaTipi.ToList();
+
+                                }
+                                @foreach (OdaTipi item in odalart)
+                                {
+                                    <option value="@item.ot_id">@item.ot_aciklama</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Bulunduğu Oteli Seçiniz</label>
+                            <select class="form-control" name="otel_id">
+                                @foreach (Oteller item in ViewBag.oteller)
+                                {
+                                    <option value="@item.otel_id">@item.otel_adi</option>
+                                }
+                            </select>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Resim Ekle</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="resim url si giriniz" name="image">
+                        </div>
+                        <button type="submit"class="btn btn-primary">Oda Ekle</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

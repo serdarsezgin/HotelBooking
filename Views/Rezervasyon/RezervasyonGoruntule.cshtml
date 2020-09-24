@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "RezervasyonGoruntule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@using OtelArama.Models
+
+@model List<Rezervasyon>
+
+
+
+
+
+<br />
+<br />
+<br />
+<div class="row">
+    
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2"style="text-align:center">
+                    Rezervasyonlarım
+                </div>
+                <div class="block-controls">
+                    <a href="/Oteller/Index" class="btn btn-sunny rounded">Otellere Geri Dön </a>
+                    @if (User.IsInRole("A") || User.IsInRole("Y"))
+                    {
+                        <a href="/Odalar/OdaEkle" class="btn btn-success rounded">Oda Ekle </a>
+                    }
+
+
+
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+
+                                <th></th>
+                                <th>Rezervasyon id</th>
+                                <th>Otel Adı</th>
+                                <th>Oda kat</th>
+                                <th>Oda numarası</th>
+                                <th>Giriş Tarihi</th>
+                                <th>Çıkış Tarihi</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach (Rezervasyon r in Model)
+                            {
+
+                            <tr>
+
+                                @{
+                                    Odalar o = new Odalar();
+
+                                    o.oda_id = r.oda_id;
+
+                                }
+                                <td><img src="@r.Odalar.image" alt="odaresim" style="max-width:200px"></td>
+                                
+                                <td>@r.rezervasyon_id</td>
+                                <td>@r.Oteller.otel_adi</td>
+
+
+
+                                @*<td><span class="label label-primary">@ot.otel_adi</span></td>*@
+
+
+
+                                <td>@r.Odalar.oda_kat</td>
+                                <td>@r.Odalar.oda_numara</td>
+                                <td>@r.giristarihi</td>
+                                <td>@r.cikistarihi</td>
+
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

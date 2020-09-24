@@ -1,0 +1,148 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <title>@ViewBag.Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <link rel='stylesheet' type='text/css' media='screen' href='~/Content/style.css' />
+    
+
+</head>
+
+
+<body>
+
+    <div>
+
+        <nav class="navbar bg-navy navbar-expand-lg  navbar-light fixed-top " style="background-color: black;">
+
+            <div class=" container ">
+                <a class="navbar-brand" href="~/Home/Index">OTEL BUL</a>
+                <iframe src="http://free.timeanddate.com/clock/i7f9zxaa/n107/tltr28/fcfff/tc000/pc000/tt0/tw1/tm1" frameborder="0" width="179" height="19"></iframe>
+
+                <button class="navbar-toggler " type="button" data-toggle="collapse " data-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+                    <ul class="navbar-nav ml-auto ">
+
+                        <li class="nav-item  ">
+                            <a class="nav-link " href="~/Home/Index">Anasayfa</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link " href="~/Oteller/Index">Otelleri Bul</a>
+                        </li>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+
+                            <li class="nav-item ">
+                                <a class="nav-link " href="~/Security/Login">Giriş Yap</a>
+                            </li>
+                        }
+
+                        <li class="nav-item ">
+                            <a class="nav-link " href="korunma ">Diğer</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="iletisim ">İletişim</a>
+                        </li>
+
+                    </ul>
+                    @if (User.Identity.IsAuthenticated)
+
+                    {
+
+                        <p style="color:aqua; margin-top:1rem">Hoşgeldiniz: @HttpContext.Current.User.Identity.Name </p>
+                        <a href="/Kullanici/Profilim" style="margin-left:0.6rem; text-decoration:underline"> Profilim</a>
+                        <a href="/Security/LogOut" class="top" style="margin-left:6px;">
+                            <span class="main-menu-icon">
+                                <span aria-hidden="true" class="icon icon-grid-big icon-size-medium"></span>
+                            </span>
+                            <span class="btn btn-danger " style="resize:initial">Çıkış Yap</span>
+                        </a>
+                    }
+
+
+                </div>
+            </div>
+        </nav>
+
+
+
+
+    </div>
+
+
+    @RenderBody()
+
+    @RenderSection("scripts", false)
+    @RenderSection("body", false)
+    <footer class="footer-distributed ">
+
+        <div class="footer-left ">
+
+            <h3>Otel Bul<span></span></h3>
+
+            <p class="footer-links ">
+                |<a href="# ">Anasayfa</a>|
+            </p>
+
+            <p class="footer-company-name ">© 2020 </p>
+            <a href=" "> OtelARAMA.com</a>
+        </div>
+
+        <div class="footer-center ">
+
+
+            <div>
+                <i class="fa fa-phone "></i>
+                <p class="phoney ">+90 538-456-7182</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope "></i>
+                <p><a href="mailto:srdrsezgn@gmail.com ">info@otelarama.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right ">
+            <p class="footer-company-about ">
+                <span>İletişime Geçin</span> Her türlü görüş, öneri ve talepleriniz için bizimle iletişime geçin.
+            </p>
+            <div class="footer-icons ">
+                <a href="# "><i class="fa fa-facebook "></i></a>
+                <a href="# "><i class="fa fa-twitter "></i></a>
+                <a href="# "><i class="fa fa-instagram "></i></a>
+                <a href="https://tr.linkedin.com/in/serdar-sezgin-7b3189176 ">
+                    <i class="fa fa-linkedin "></i>
+                </a>
+
+                <a href="https://github.com/serdarsezgin "><i class="fa fa-github "></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+</body>
+</html>
+

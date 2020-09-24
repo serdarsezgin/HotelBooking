@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using OtelArama.Models
+@model Musteri
+
+<br /><br /><br /><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2 " style="text-align:center">
+
+                    Profilim
+                </div>
+                <div class="block-controls">
+                    <a class="btn btn-fresh" href="/Home/Index">Anasayfaya Geri Dön  </a>
+                    <a class="btn btn-fresh" href="/Rezervasyon/RezervasyonGoruntule/@Model.musteri_id">Rezervasyonlarımı Görüntüle  </a>
+                </div>
+            </div>
+            <div class="block-content-outer" style="display: block;">
+                <div class="block-content-inner">
+                    <form action="/Kullanici/Profilim" method="post" role="form">
+                        @if (Model != null)
+                        {
+                            <input type="hidden" name="musteri_id" value="@Model.musteri_id" />
+                            <input type="hidden" name="kullanici_id" value="@Model.kullanici_id" />
+                        }
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Müşteri Adı:</label>
+                            @if (Model.musteri_adi == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="adı giriniz" name="musteri_adi">
+                            }
+                            else
+                            {
+                                <input value="@Model.musteri_adi" type="text" class="form-control" id="exampleInputEmail1" placeholder="adı giriniz" name="musteri_adi">
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Soyadı</label>
+                            @if (Model.musteri_soyadi == null)
+                            {
+                                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="soyadı giriniz" name="musteri_soyadi">
+                            }
+                            else
+                            {
+                                <input value="@Model.musteri_soyadi" type="text" class="form-control" id="exampleInputPassword1" placeholder="Adres giriniz" name="otel_adres">
+                            }
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Adres</label>
+                            @if (Model.musteri_adres == null)
+                            {
+                                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Adres giriniz" name="musteri_adres">
+                            }
+                            else
+                            {
+                                <input value="@Model.musteri_adres" type="text" class="form-control" id="exampleInputPassword1" placeholder="Adres giriniz" name="musteri_adres">
+                            }
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Telefon</label>
+                            @if (Model.musteri_tel == null)
+                            {
+                                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Telefon giriniz" name="musteri_tel">
+                            }
+                            else
+                            {
+                                <input value="@Model.musteri_tel" type="text" class="form-control" id="exampleInputPassword1" placeholder="Telefon giriniz" name="musteri_tel">
+                            }
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Email</label>
+                            @if (Model.musteri_email == null)
+                            {
+                                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="mail giriniz" name="musteri_email">
+                            }
+                            else
+                            {
+                                <input value="@Model.musteri_email" type="text" class="form-control" id="exampleInputPassword1" placeholder="mail giriniz" name="musteri_email">
+                            }
+
+                        </div>
+
+
+
+                        @*<div class="form-group">
+            <label for="exampleInputPassword1">Otel Kapak Fotoğrafı</label>
+            @if (Model.image == null)
+            {
+                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Resim url giriniz" name="image">
+            }
+            else
+            {
+                <input value="@Model.image" type="text" class="form-control" id="exampleInputPassword1" placeholder="Resim url giriniz" name="image">
+            }
+
+        </div>*@
+
+
+                        <p>@ViewBag.mesaj</p>
+
+                        <button type="submit" class="btn btn-primary">Profili Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

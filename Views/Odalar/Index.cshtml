@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Oda Bul";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using OtelArama.Models
+
+@model List<Odalar>
+
+
+
+
+
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+
+                </div>
+                <div class="block-controls">
+                    <a href="/Oteller/Index" class="btn btn-sunny rounded">Otellere Geri Dön </a>
+                    @if (User.IsInRole("A")||User.IsInRole("Y"))
+                    {
+                        <a href="/Odalar/OdaEkle" class="btn btn-success rounded">Oda Ekle </a>
+                    }
+
+
+
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+
+                                <th></th>
+                                <th>Oda Tipi</th>
+                                <th>Oda kat</th>
+                                <th>Oda numarası</th>
+                                <th>Oda fiyatı</th>
+                                <th>Oda durumu</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach (Odalar o in Model)
+                            {
+
+                            <tr>
+
+                                @{
+                                    Oteller ot = new Oteller();
+                                    ot.otel_id = o.otel_id;
+
+                                }
+                                <td><img src="@o.image" alt="odaresim" style="max-width:200px"></td>
+
+
+                                @*<td><span class="label label-primary">@ot.otel_adi</span></td>*@
+
+                                <td>@o.OdaTipi.ot_aciklama</td>
+
+                                <td>@o.oda_kat</td>
+                                <td>@o.oda_numara</td>
+                                <td>@o.oda_fiyat ₺</td>
+
+                                @if (o.odadurumu == "bos")
+                                {
+
+                                    <td><a href="/Rezervasyon/Index/@o.oda_id" class="btn btn-success rounded">Rezervasyon Yap</a></td>
+                                }
+                                @if (o.odadurumu == "dolu")
+                                {
+
+                                    <td><a class="badge badge-danger" style="width:150px; height:35px; ">Oda Dolu!</a></td>
+
+                                }@if (User.IsInRole("A") || (User.IsInRole("Y") && User.Identity.Name == o.Oteller.OtelYonetimi.Kullanici.kullanici_adi))
+                                {
+                                    <td><a href="/Odalar/OdaSil/@o.oda_id" class="btn btn-danger rounded">Sil</a></td>
+                                }
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

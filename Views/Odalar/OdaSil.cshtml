@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "OdaSil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using OtelArama.Models
+@model Odalar
+
+
+
+<br /><br /><br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2" style="text-align:center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+                    Oda Silme
+                </div>
+                <div class="block-controls">
+                    <a href="/Oteller/Index"></a>
+                    <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+
+                <div class="block-content-outer">
+                    <div class="block-content-inner" style="text-align:center">
+                        <form action="/Odalar/OdaSil" method="post">
+                            <input type="hidden" name="oda_id" value="@Model.oda_id" />
+                            <a href="#" class="badge badge-danger">@Model.oda_numara</a>
+                            <label> numaralı odayı silmek istediğinize emin misiniz?</label>
+                            <input type="submit" class="btn btn-danger" name="name" value="Evet">
+                            <a href="/Odalar/Index/@Model.otel_id" class="btn btn-success ">Hayır</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
